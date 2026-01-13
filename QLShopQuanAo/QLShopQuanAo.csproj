@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BB641A6C-BBBB-41A2-A54A-390347063E8C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>QLShopQuanAo</RootNamespace>
+    <AssemblyName>QLShopQuanAo</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\DBConnect.cs" />
+    <Compile Include="dbQLShopQuanAoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbQLShopQuanAoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbQLShopQuanAoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmBangHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBangHang.Designer.cs">
+      <DependentUpon>FrmBangHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmHoaDon.Designer.cs">
+      <DependentUpon>FrmHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmKhachHang.Designer.cs">
+      <DependentUpon>FrmKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSanPham.Designer.cs">
+      <DependentUpon>FrmSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTaiKhoang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTaiKhoang.Designer.cs">
+      <DependentUpon>FrmTaiKhoang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmThongKe.Designer.cs">
+      <DependentUpon>FrmThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTHoaDon.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\KhachHang.cs" />
+    <Compile Include="Models\SanPham.cs" />
+    <Compile Include="Models\TaiKhoang.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmBangHang.resx">
+      <DependentUpon>FrmBangHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSanPham.resx">
+      <DependentUpon>FrmSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="dbQLShopQuanAoDataSet.xsc">
+      <DependentUpon>dbQLShopQuanAoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbQLShopQuanAoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbQLShopQuanAoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbQLShopQuanAoDataSet.xss">
+      <DependentUpon>dbQLShopQuanAoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbQLShopQuanAoDataSet1.xsc">
+      <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dbQLShopQuanAoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbQLShopQuanAoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbQLShopQuanAoDataSet1.xss">
+      <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
