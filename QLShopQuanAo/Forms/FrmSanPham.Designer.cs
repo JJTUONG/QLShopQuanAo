@@ -57,6 +57,8 @@
             this.dbQLShopQuanAoDataSet1 = new QLShopQuanAo.dbQLShopQuanAoDataSet1();
             this.btnXoaTrang = new System.Windows.Forms.Button();
             this.btnTimSP = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSoLuongSP = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbQLShopQuanAoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -65,9 +67,9 @@
             // 
             // btnSuaSP
             // 
-            this.btnSuaSP.Location = new System.Drawing.Point(696, 109);
+            this.btnSuaSP.Location = new System.Drawing.Point(890, 72);
             this.btnSuaSP.Name = "btnSuaSP";
-            this.btnSuaSP.Size = new System.Drawing.Size(88, 40);
+            this.btnSuaSP.Size = new System.Drawing.Size(88, 29);
             this.btnSuaSP.TabIndex = 46;
             this.btnSuaSP.Text = "Sửa";
             this.btnSuaSP.UseVisualStyleBackColor = true;
@@ -75,9 +77,9 @@
             // 
             // btnLuuSP
             // 
-            this.btnLuuSP.Location = new System.Drawing.Point(696, 162);
+            this.btnLuuSP.Location = new System.Drawing.Point(890, 158);
             this.btnLuuSP.Name = "btnLuuSP";
-            this.btnLuuSP.Size = new System.Drawing.Size(88, 40);
+            this.btnLuuSP.Size = new System.Drawing.Size(88, 26);
             this.btnLuuSP.TabIndex = 45;
             this.btnLuuSP.Text = "Lưu";
             this.btnLuuSP.UseVisualStyleBackColor = true;
@@ -85,9 +87,9 @@
             // 
             // btnXoaSP
             // 
-            this.btnXoaSP.Location = new System.Drawing.Point(582, 162);
+            this.btnXoaSP.Location = new System.Drawing.Point(796, 116);
             this.btnXoaSP.Name = "btnXoaSP";
-            this.btnXoaSP.Size = new System.Drawing.Size(85, 40);
+            this.btnXoaSP.Size = new System.Drawing.Size(88, 27);
             this.btnXoaSP.TabIndex = 44;
             this.btnXoaSP.Text = "Xóa";
             this.btnXoaSP.UseVisualStyleBackColor = true;
@@ -95,9 +97,9 @@
             // 
             // btnThemSP
             // 
-            this.btnThemSP.Location = new System.Drawing.Point(582, 109);
+            this.btnThemSP.Location = new System.Drawing.Point(796, 72);
             this.btnThemSP.Name = "btnThemSP";
-            this.btnThemSP.Size = new System.Drawing.Size(85, 40);
+            this.btnThemSP.Size = new System.Drawing.Size(88, 29);
             this.btnThemSP.TabIndex = 43;
             this.btnThemSP.Text = "Thêm";
             this.btnThemSP.UseVisualStyleBackColor = true;
@@ -105,14 +107,14 @@
             // 
             // txtGiaSP
             // 
-            this.txtGiaSP.Location = new System.Drawing.Point(673, 72);
+            this.txtGiaSP.Location = new System.Drawing.Point(633, 79);
             this.txtGiaSP.Name = "txtGiaSP";
-            this.txtGiaSP.Size = new System.Drawing.Size(221, 22);
+            this.txtGiaSP.Size = new System.Drawing.Size(144, 22);
             this.txtGiaSP.TabIndex = 42;
             // 
             // lblGia
             // 
-            this.lblGia.Location = new System.Drawing.Point(572, 75);
+            this.lblGia.Location = new System.Drawing.Point(532, 78);
             this.lblGia.Name = "lblGia";
             this.lblGia.Size = new System.Drawing.Size(95, 20);
             this.lblGia.TabIndex = 41;
@@ -164,6 +166,7 @@
             this.lblTaiKhoang.Size = new System.Drawing.Size(79, 44);
             this.lblTaiKhoang.TabIndex = 36;
             this.lblTaiKhoang.Text = "Tài Khoảng";
+            this.lblTaiKhoang.Click += new System.EventHandler(this.lblTaiKhoang_Click);
             // 
             // btnSanPham
             // 
@@ -280,9 +283,9 @@
             // 
             // btnXoaTrang
             // 
-            this.btnXoaTrang.Location = new System.Drawing.Point(806, 109);
+            this.btnXoaTrang.Location = new System.Drawing.Point(890, 116);
             this.btnXoaTrang.Name = "btnXoaTrang";
-            this.btnXoaTrang.Size = new System.Drawing.Size(88, 40);
+            this.btnXoaTrang.Size = new System.Drawing.Size(88, 27);
             this.btnXoaTrang.TabIndex = 49;
             this.btnXoaTrang.Text = "Xoa Trang";
             this.btnXoaTrang.UseVisualStyleBackColor = true;
@@ -290,19 +293,38 @@
             // 
             // btnTimSP
             // 
-            this.btnTimSP.Location = new System.Drawing.Point(806, 162);
+            this.btnTimSP.Location = new System.Drawing.Point(796, 158);
             this.btnTimSP.Name = "btnTimSP";
-            this.btnTimSP.Size = new System.Drawing.Size(88, 40);
+            this.btnTimSP.Size = new System.Drawing.Size(88, 25);
             this.btnTimSP.TabIndex = 48;
             this.btnTimSP.Text = "Tìm";
             this.btnTimSP.UseVisualStyleBackColor = true;
             this.btnTimSP.Click += new System.EventHandler(this.btnTimSP_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(558, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 16);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Số Lượng";
+            // 
+            // txtSoLuongSP
+            // 
+            this.txtSoLuongSP.Location = new System.Drawing.Point(633, 115);
+            this.txtSoLuongSP.Name = "txtSoLuongSP";
+            this.txtSoLuongSP.Size = new System.Drawing.Size(144, 22);
+            this.txtSoLuongSP.TabIndex = 51;
+            this.txtSoLuongSP.TextChanged += new System.EventHandler(this.txtSoLuongSP_TextChanged);
             // 
             // FrmSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 498);
+            this.Controls.Add(this.txtSoLuongSP);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnXoaTrang);
             this.Controls.Add(this.btnTimSP);
             this.Controls.Add(this.lblVaiTro);
@@ -370,5 +392,7 @@
         private dbQLShopQuanAoDataSet1 dbQLShopQuanAoDataSet1;
         private System.Windows.Forms.Button btnXoaTrang;
         private System.Windows.Forms.Button btnTimSP;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSoLuongSP;
     }
 }

@@ -17,8 +17,9 @@ namespace QLShopQuanAo.Forms
         SqlConnection conn;
         SqlDataAdapter adapter;
         DataTable dt;
-        DataSet ds;
         string _vaiTro;
+        DataSet ds;
+        
 
         public FrmSanPham(string vaiTro)
         {
@@ -51,9 +52,8 @@ namespace QLShopQuanAo.Forms
             try
             {
                 adapter = new SqlDataAdapter(sql, conn);
-                ds = new DataSet();
-                adapter.Fill(ds);
-                dt = ds.Tables[0]; // Lưu DataTable để sử dụng cho lọc
+                dt = new DataTable();
+                adapter.Fill(dt);
 
                 dgvSanPham.AutoGenerateColumns = true;
                 dgvSanPham.DataSource = dt;
@@ -67,45 +67,46 @@ namespace QLShopQuanAo.Forms
 
         private void SaveProduct()
         {
+            if (txtMaHangSP.Text == "" || txtTenSP.Text == "" || txtGiaSP.Text == "")
+            {
+                MessageBox.Show("Nhập thiếu dữ liệu!");
+                return;
+            }
+
+            if (
+            !decimal.TryParse(txtGiaSP.Text, out decimal gia) ||
+            !decimal.TryParse(txtSoLuongSP.Text, out decimal soLuong))
+                    {
+                        MessageBox.Show("Giá và số lượng phải là số!");
+                        return;
+                    }
+
+            string sql = @"INSERT INTO SanPham(MaSP, TenSP, Loai, Size, Gia, SoLuong)
+                           VALUES(@MaSP,@TenSP,@Loai,@Size,@Gia, @SoLuong)";
+
             try
             {
-                if (string.IsNullOrWhiteSpace(txtMaHangSP.Text) ||
-                    string.IsNullOrWhiteSpace(txtTenSP.Text) ||
-                    string.IsNullOrWhiteSpace(txtGiaSP.Text))
-                {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin bắt buộc!");
-                    return;
-                }
-
-                if (!decimal.TryParse(txtGiaSP.Text, out decimal gia))
-                {
-                    MessageBox.Show("Giá phải là số!");
-                    return;
-                }
-
-                string query = @"INSERT INTO SanPham(MaSP, TenSP, Loai, Size, Gia)
-                        VALUES(@MaSP, @TenSP, @Loai, @Size, @Gia)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@MaSP", txtMaHangSP.Text);
-                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text);
-                    cmd.Parameters.AddWithValue("@Loai", txtLoaiSP.Text);
-                    cmd.Parameters.AddWithValue("@Size", txtSizeSP.Text);
+                    cmd.Parameters.AddWithValue("@MaSP", txtMaHangSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Loai", txtLoaiSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Size", txtSizeSP.Text.Trim());
                     cmd.Parameters.AddWithValue("@Gia", gia);
-
+                    cmd.Parameters.AddWithValue("@SoLuong", soLuong);
                     cmd.ExecuteNonQuery();
-                    conn.Close();
                 }
 
-                MessageBox.Show("Thêm sản phẩm thành công!");
+                MessageBox.Show("Thêm thành công!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi SQL: " + ex.Message);
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -117,16 +118,16 @@ namespace QLShopQuanAo.Forms
             StringBuilder filter = new StringBuilder();
 
             if (!string.IsNullOrWhiteSpace(txtMaHangSP.Text))
-                filter.Append($"MaHang LIKE '%{txtMaHangSP.Text}%' AND ");
+                filter.Append($"MaSP LIKE '%{txtMaHangSP.Text}%' AND ");
 
             if (!string.IsNullOrWhiteSpace(txtTenSP.Text))
                 filter.Append($"TenSP LIKE '%{txtTenSP.Text}%' AND ");
 
             if (!string.IsNullOrWhiteSpace(txtLoaiSP.Text))
-                filter.Append($"LoaiSP LIKE '%{txtLoaiSP.Text}%' AND ");
+                filter.Append($"Loai LIKE '%{txtLoaiSP.Text}%' AND ");
 
             if (!string.IsNullOrWhiteSpace(txtSizeSP.Text))
-                filter.Append($"SizeSP LIKE '%{txtSizeSP.Text}%' AND ");
+                filter.Append($"Size LIKE '%{txtSizeSP.Text}%' AND ");
 
             if (!string.IsNullOrWhiteSpace(txtGiaSP.Text))
             {
@@ -135,11 +136,20 @@ namespace QLShopQuanAo.Forms
                     MessageBox.Show("Giá phải là số!");
                     return;
                 }
-                filter.Append($"GiaSP = {gia} AND ");
+                filter.Append($"Gia = {gia} AND ");
+            }
+            if (!string.IsNullOrWhiteSpace(txtSoLuongSP.Text))
+            {
+                if (!decimal.TryParse(txtSoLuongSP.Text, out decimal soLuong))
+                {
+                    MessageBox.Show("Giá phải là số!");
+                    return;
+                }
+                filter.Append($" So Luong = {soLuong}  ");
             }
 
             if (filter.Length > 0)
-                filter.Remove(filter.Length - 5, 5); // xóa AND
+                filter.Remove(filter.Length - 6, 6); // xóa AND
 
             DataView dv = dt.DefaultView;
             dv.RowFilter = filter.ToString();
@@ -152,15 +162,15 @@ namespace QLShopQuanAo.Forms
         private void dgvSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Hiển thị dữ liệu lên các TextBox khi chọn dòng trong DataGridView
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvSanPham.Rows[e.RowIndex];
-                txtMaHangSP.Text = row.Cells["MaHang"].Value?.ToString() ?? "";
-                txtTenSP.Text = row.Cells["TenSP"].Value?.ToString() ?? "";
-                txtLoaiSP.Text = row.Cells["LoaiSP"].Value?.ToString() ?? "";
-                txtSizeSP.Text = row.Cells["SizeSP"].Value?.ToString() ?? "";
-                txtGiaSP.Text = row.Cells["GiaSP"].Value?.ToString() ?? "";
-            }
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow row = dgvSanPham.Rows[e.RowIndex];
+            txtMaHangSP.Text = row.Cells["MaSP"].Value.ToString();
+            txtTenSP.Text = row.Cells["TenSP"].Value.ToString();
+            txtLoaiSP.Text = row.Cells["Loai"].Value.ToString();
+            txtSizeSP.Text = row.Cells["Size"].Value.ToString();
+            txtGiaSP.Text = row.Cells["Gia"].Value.ToString();
+            txtGiaSP.Text = row.Cells["SoLuong"].Value.ToString();
         }
 
 
@@ -176,52 +186,44 @@ namespace QLShopQuanAo.Forms
 
         private void btnSuaSP_Click_1(object sender, EventArgs e)
         {
-            if (dgvSanPham.CurrentRow == null)
-            {
-                MessageBox.Show("Vui lòng chọn sản phẩm cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (dgvSanPham.CurrentRow == null) return;
+
+            string sql = @"UPDATE SanPham 
+                           SET TenSP=@TenSP, Loai=@Loai, Size=@Size, Gia=@Gia, SoLuong = @SoLuong
+                           WHERE MaSP=@MaSP";
 
             try
             {
-                string maHang = txtMaHangSP.Text;
-                string query = @"UPDATE SanPham 
-                                SET TenSP = @TenSP, 
-                                    LoaiSP = @LoaiSP, 
-                                    SizeSP = @SizeSP, 
-                                    GiaSP = @GiaSP 
-                                WHERE MaHang = @MaHang";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    if (conn.State == ConnectionState.Closed)
-                        conn.Open();
-
-                    cmd.Parameters.AddWithValue("@MaHang", maHang);
-                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text);
-                    cmd.Parameters.AddWithValue("@LoaiSP", txtLoaiSP.Text ?? "");
-                    cmd.Parameters.AddWithValue("@SizeSP", txtSizeSP.Text ?? "");
-                    cmd.Parameters.AddWithValue("@GiaSP", decimal.Parse(txtGiaSP.Text));
-
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@MaSP", txtMaHangSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Loai", txtLoaiSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Size", txtSizeSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Gia", decimal.Parse(txtGiaSP.Text));
+                    cmd.Parameters.AddWithValue("@SoLuong", decimal.Parse(txtSoLuongSP.Text));
                     cmd.ExecuteNonQuery();
                 }
 
-                // Tải lại dữ liệu và lọc
-                string sql = "SELECT * FROM SanPham";
-                LoadSanPham(sql);
-                FilterDataGridView();
-
-                MessageBox.Show("Cập nhật sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadSanPham("SELECT * FROM SanPham");
+                MessageBox.Show("Cập nhật thành công!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi sửa sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
         private void btnTimSP_Click(object sender, EventArgs e)
         {
-            FilterDataGridView();
+            if (dt == null) return;
+            dt.DefaultView.RowFilter =
+                $"MaSP LIKE '%{txtMaHangSP.Text}%' OR TenSP LIKE '%{txtTenSP.Text}%'";
         }
 
         private void btnXoaTrang_Click_1(object sender, EventArgs e)
@@ -232,6 +234,7 @@ namespace QLShopQuanAo.Forms
             txtLoaiSP.Clear();
             txtSizeSP.Clear();
             txtGiaSP.Clear();
+            txtSoLuongSP.Clear();
 
             // Hiển thị toàn bộ dữ liệu khi xóa trắng
             if (dt != null)
@@ -244,14 +247,14 @@ namespace QLShopQuanAo.Forms
         {
             try
             {
-                // 1. Lưu sản phẩm mới vào database
+                //Lưu sản phẩm mới vào database
                 SaveProduct();
 
-                // 2. Tải lại dữ liệu
+                //  Tải lại dữ liệu
                 string sql = "SELECT * FROM SanPham";
                 LoadSanPham(sql);
 
-                // 3. Lọc DataGridView theo các giá trị đã nhập
+                //  Lọc DataGridView theo các giá trị đã nhập
                 FilterDataGridView();
 
                 MessageBox.Show("Lưu sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -266,48 +269,54 @@ namespace QLShopQuanAo.Forms
         {
             if (dgvSanPham.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chọn sản phẩm cần xóa!");
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận xóa",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            string maSP = dgvSanPham.CurrentRow.Cells["MaSP"].Value.ToString();
+
+            if (MessageBox.Show($"Xóa sản phẩm {maSP} ?", "Xác nhận",
+                MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+
+            try
             {
-                try
+                using (SqlCommand cmd =
+                    new SqlCommand("DELETE FROM SanPham WHERE MaSP=@MaSP", conn))
                 {
-                    string maHang = txtMaHangSP.Text;
-                    string query = "DELETE FROM SanPham WHERE MaHang = @MaHang";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        if (conn.State == ConnectionState.Closed)
-                            conn.Open();
-
-                        cmd.Parameters.AddWithValue("@MaHang", maHang);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    // Tải lại dữ liệu
-                    string sql = "SELECT * FROM SanPham";
-                    LoadSanPham(sql);
-
-                    // Xóa trắng các ô nhập liệu
-                    btnXoaTrang_Click_1(sender, e);
-
-                    MessageBox.Show("Xóa sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@MaSP", maSP);
+                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi xóa sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                LoadSanPham("SELECT * FROM SanPham");
+                btnXoaTrang_Click_1(sender, e);
+                MessageBox.Show("Xóa thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
-
         private void btnThemSP_Click_1(object sender, EventArgs e)
         {
             // Xóa trắng các ô nhập liệu để thêm mới
             SaveProduct();
+            LoadSanPham("SELECT * FROM SanPham");
             btnXoaTrang_Click_1(sender, e);
+        }
+
+        private void lblTaiKhoang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSoLuongSP_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
