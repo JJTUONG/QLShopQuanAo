@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QLShopQuanAo.Forms.FrmSanPham;
+
 
 namespace QLShopQuanAo.Forms
 {
@@ -49,14 +51,12 @@ namespace QLShopQuanAo.Forms
 
         private void bntBanHang_Click(object sender, EventArgs e)
         {
-            FrmBangHang f = new FrmBangHang();
-            f.ShowDialog();
+            
         }
 
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
-            FrmHoaDon f = new FrmHoaDon();
-            f.ShowDialog();
+            
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)

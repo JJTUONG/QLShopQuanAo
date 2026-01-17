@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
 
-namespace QLShopQuanAo.Forms
+namespace QLShopQuanAo.Forms.FrmSanPham
 {
     public partial class FrmSanPham : Form
     {
