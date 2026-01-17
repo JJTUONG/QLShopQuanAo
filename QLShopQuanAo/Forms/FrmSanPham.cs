@@ -12,6 +12,7 @@ using Microsoft.SqlServer.Server;
 
 namespace QLShopQuanAo.Forms
 {
+    using QLShopQuanAo.Data;
     public partial class FrmSanPham : Form
     {
         SqlConnection conn;
@@ -39,10 +40,7 @@ namespace QLShopQuanAo.Forms
             }
 
             conn = new SqlConnection();
-            conn = new SqlConnection(
-                @"Data Source=DESKTOP-17KIRAF\SQLEXPRESS;
-                  Initial Catalog=dbQLShopQuanAo;
-                  Integrated Security=True");
+            conn = DBConnect.GetConnection();
             string sql = "SELECT * FROM SanPham";
             LoadSanPham(sql);
         }
