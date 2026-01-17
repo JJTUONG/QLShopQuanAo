@@ -57,18 +57,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmBangHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmBangHang.Designer.cs">
-      <DependentUpon>FrmBangHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FrmHoaDon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmHoaDon.Designer.cs">
-      <DependentUpon>FrmHoaDon.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,10 +75,10 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmSanPham.cs">
+    <Compile Include="Forms\FromSanPhams\FrmSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmSanPham.Designer.cs">
+    <Compile Include="Forms\FromSanPhams\FrmSanPham.Designer.cs">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmTaiKhoang.cs">
@@ -117,6 +105,12 @@
     <Compile Include="Forms\FrmThongKe.Designer.cs">
       <DependentUpon>FrmThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.Designer.cs">
+      <DependentUpon>FrmThemSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CTHoaDon.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\KhachHang.cs" />
@@ -124,16 +118,13 @@
     <Compile Include="Models\TaiKhoang.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FrmBangHang.resx">
-      <DependentUpon>FrmBangHang.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmSanPham.resx">
+    <EmbeddedResource Include="Forms\FromSanPhams\FrmSanPham.resx">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLichSuTaiKhoan.resx">
@@ -187,5 +178,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Database\QueryData.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QLShopQuanAo.Forms
+namespace QLShopQuanAo.Forms.FromSanPhams
 {
-    public partial class FrmHoaDon : Form
+    public partial class FrmThemSanPham : Form
     {
-        public FrmHoaDon()
+        public FrmThemSanPham()
         {
             InitializeComponent();
         }
