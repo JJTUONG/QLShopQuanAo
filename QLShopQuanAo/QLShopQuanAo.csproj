@@ -57,6 +57,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmBanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBanHang.Designer.cs">
+      <DependentUpon>FrmBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmInHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmInHoaDon.Designer.cs">
+      <DependentUpon>FrmInHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,10 +87,10 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmSanPham.cs">
+    <Compile Include="Forms\FrmSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmSanPham.Designer.cs">
+    <Compile Include="Forms\FrmSanPham.Designer.cs">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmTaiKhoang.cs">
@@ -93,10 +105,10 @@
     <Compile Include="Forms\FrmThongKe.Designer.cs">
       <DependentUpon>FrmThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.cs">
+    <Compile Include="Forms\FrmThemSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.Designer.cs">
+    <Compile Include="Forms\FrmThemSanPham.Designer.cs">
       <DependentUpon>FrmThemSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CTHoaDon.cs" />
@@ -112,7 +124,7 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FromSanPhams\FrmSanPham.resx">
+    <EmbeddedResource Include="Forms\FrmSanPham.resx">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -159,7 +171,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Database\QueryData.sql" />
   </ItemGroup>

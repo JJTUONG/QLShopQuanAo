@@ -8,7 +8,7 @@ namespace QLShopQuanAo.Models
 {
     internal class HoaDon
     {
-        public string MaHD { get; set; }
+        public int MaHD { get; set; }
         public DateTime NgayLap { get; set; }
         public string MaKH { get; set; }
         public int TongTien { get; set; }

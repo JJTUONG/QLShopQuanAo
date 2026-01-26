@@ -1,4 +1,4 @@
-﻿namespace QLShopQuanAo.Forms.FrmSanPham
+﻿namespace QLShopQuanAo.Forms
 {
     partial class FrmSanPham
     {

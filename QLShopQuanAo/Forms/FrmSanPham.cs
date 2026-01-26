@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
 
-namespace QLShopQuanAo.Forms.FrmSanPham
+namespace QLShopQuanAo.Forms
 {
     public partial class FrmSanPham : Form
     {
@@ -180,8 +180,8 @@ namespace QLShopQuanAo.Forms.FrmSanPham
 
         private void bntBanHang_Click(object sender, EventArgs e)
         {
-            FrmBangHang f = new FrmBangHang();
-            f.ShowDialog();
+            //FrmBangHang f = new FrmBangHang();
+            //f.ShowDialog();
         }
 
         private void btnSuaSP_Click_1(object sender, EventArgs e)
