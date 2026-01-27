@@ -34,32 +34,44 @@ namespace QLShopQuanAo.Forms
             string user = txtUser.Text.Trim();
             string pass = txtPass.Text.Trim();
 
-            SqlConnection conn = DBConnect.GetConnection();
-            conn.Open();
-
-            string sql = @"SELECT VaiTro 
-                   FROM TaiKhoan 
-                   WHERE TenDangNhap=@user 
-                   AND MatKhau=@pass 
-                   AND TrangThai=1";
-
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@user", user);
-            cmd.Parameters.AddWithValue("@pass", pass);
-
-            object result = cmd.ExecuteScalar();
-
-            if (result != null)
+            using (SqlConnection conn = DBConnect.GetConnection())
             {
-                string vaiTro = result.ToString();
+                conn.Open();
 
-                FrmMain main = new FrmMain(vaiTro);
-                main.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+                // Lấy MaTK và VaiTro
+                string sql = @"SELECT MaTK, VaiTro 
+                               FROM TaiKhoan 
+                               WHERE TenDangNhap=@user 
+                               AND MatKhau=@pass 
+                               AND TrangThai=1";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@user", user);
+                cmd.Parameters.AddWithValue("@pass", pass);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string maTK = reader["MaTK"].ToString();
+                        string vaiTro = reader["VaiTro"].ToString();
+                        reader.Close(); // Đóng reader để thực hiện Insert
+
+                        // Ghi lịch sử đăng nhập
+                        string logSql = "INSERT INTO LichSuDangNhap(MaTK, ThoiGianDangNhap, TrangThai) VALUES(@MaTK, GETDATE(), N'Thành công')";
+                        SqlCommand logCmd = new SqlCommand(logSql, conn);
+                        logCmd.Parameters.AddWithValue("@MaTK", maTK);
+                        logCmd.ExecuteNonQuery();
+
+                        FrmMain main = new FrmMain(vaiTro);
+                        main.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+                    }
+                }
             }
         }
     }

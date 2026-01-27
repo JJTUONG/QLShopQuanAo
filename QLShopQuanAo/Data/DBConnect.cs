@@ -12,7 +12,7 @@ namespace QLShopQuanAo.Data
         public static SqlConnection GetConnection()
         {
             string connStr =
-                @"Data Source=DESKTOP-17KIRAF\SQLEXPRESS;
+                @"Data Source=LAPTOPVIPRONUMB\SQLEXPRESS;
                   Initial Catalog=dbQLShopQuanAo;
                   Integrated Security=True";
 
