@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLShopQuanAo.Forms.SanPham;
 using QLShopQuanAo.Forms.TaiKhoang;
+using QLShopQuanAo.Forms.KhachHang;
 
 
 

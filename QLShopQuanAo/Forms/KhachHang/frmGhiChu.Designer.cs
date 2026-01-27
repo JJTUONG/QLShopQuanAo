@@ -1,4 +1,4 @@
-﻿namespace QLShopQuanAo.Forms
+﻿namespace QLShopQuanAo.Forms.KhachHang
 {
     partial class frmGhiChu
     {
@@ -20,7 +20,8 @@
             this.lblTenKhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lblTenKhach.Location = new System.Drawing.Point(20, 20);
             this.lblTenKhach.Name = "lblTenKhach";
-            this.lblTenKhach.Size = new System.Drawing.Size(140, 20);
+            this.lblTenKhach.Size = new System.Drawing.Size(134, 20);
+            this.lblTenKhach.TabIndex = 3;
             this.lblTenKhach.Text = "Đang ghi chú...";
             // 
             // txtNoiDung
@@ -29,6 +30,7 @@
             this.txtNoiDung.Multiline = true;
             this.txtNoiDung.Name = "txtNoiDung";
             this.txtNoiDung.Size = new System.Drawing.Size(440, 60);
+            this.txtNoiDung.TabIndex = 2;
             // 
             // btnLuu
             // 
@@ -36,6 +38,7 @@
             this.btnLuu.Location = new System.Drawing.Point(360, 120);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(100, 35);
+            this.btnLuu.TabIndex = 1;
             this.btnLuu.Text = "Lưu Note";
             this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -44,10 +47,14 @@
             // 
             this.dgvGhiChu.AllowUserToAddRows = false;
             this.dgvGhiChu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvGhiChu.ColumnHeadersHeight = 29;
             this.dgvGhiChu.Location = new System.Drawing.Point(20, 170);
             this.dgvGhiChu.Name = "dgvGhiChu";
             this.dgvGhiChu.ReadOnly = true;
+            this.dgvGhiChu.RowHeadersWidth = 51;
             this.dgvGhiChu.Size = new System.Drawing.Size(440, 200);
+            this.dgvGhiChu.TabIndex = 0;
+            this.dgvGhiChu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGhiChu_CellContentClick);
             // 
             // frmGhiChu
             // 
@@ -56,11 +63,14 @@
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.txtNoiDung);
             this.Controls.Add(this.lblTenKhach);
+            this.Name = "frmGhiChu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ghi Chú Khách Hàng";
+            this.Load += new System.EventHandler(this.frmGhiChu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGhiChu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         private System.Windows.Forms.Label lblTenKhach;
         private System.Windows.Forms.TextBox txtNoiDung;

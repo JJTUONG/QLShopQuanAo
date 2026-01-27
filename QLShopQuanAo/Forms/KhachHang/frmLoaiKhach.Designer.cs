@@ -1,4 +1,4 @@
-﻿namespace QLShopQuanAo.Forms
+﻿namespace QLShopQuanAo.Forms.KhachHang
 {
     partial class frmLoaiKhach
     {
@@ -20,7 +20,8 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 16);
+            this.label1.Size = new System.Drawing.Size(98, 16);
+            this.label1.TabIndex = 4;
             this.label1.Text = "Tên loại khách:";
             // 
             // txtTenLoai
@@ -28,6 +29,7 @@
             this.txtTenLoai.Location = new System.Drawing.Point(140, 27);
             this.txtTenLoai.Name = "txtTenLoai";
             this.txtTenLoai.Size = new System.Drawing.Size(230, 22);
+            this.txtTenLoai.TabIndex = 3;
             // 
             // btnThem
             // 
@@ -35,6 +37,7 @@
             this.btnThem.Location = new System.Drawing.Point(140, 65);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 35);
+            this.btnThem.TabIndex = 2;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
@@ -45,6 +48,7 @@
             this.btnXoa.Location = new System.Drawing.Point(270, 65);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 35);
+            this.btnXoa.TabIndex = 1;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
@@ -53,27 +57,32 @@
             // 
             this.dgvLoai.AllowUserToAddRows = false;
             this.dgvLoai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLoai.ColumnHeadersHeight = 29;
             this.dgvLoai.Location = new System.Drawing.Point(12, 120);
             this.dgvLoai.Name = "dgvLoai";
             this.dgvLoai.ReadOnly = true;
+            this.dgvLoai.RowHeadersWidth = 51;
             this.dgvLoai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLoai.Size = new System.Drawing.Size(400, 200);
+            this.dgvLoai.TabIndex = 0;
             this.dgvLoai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLoai_CellClick);
             // 
             // frmLoaiKhach
             // 
-            this.ClientSize = new System.Drawing.Size(430, 340);
+            this.ClientSize = new System.Drawing.Size(821, 340);
             this.Controls.Add(this.dgvLoai);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.txtTenLoai);
             this.Controls.Add(this.label1);
+            this.Name = "frmLoaiKhach";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản Lý Loại Khách";
             this.Load += new System.EventHandler(this.frmLoaiKhach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoai)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Label label1;

@@ -3,12 +3,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace QLShopQuanAo.Forms
+namespace QLShopQuanAo.Forms.KhachHang
 {
     public partial class frmLoaiKhach : Form
     {
         // KẾT NỐI
-        string strConn = @"Data Source=HUYTRUONG\SQLEXPRESS;Initial Catalog=QLShopQuanAo;Integrated Security=True";
+        string strConn = @"Data Source=DESKTOP-17KIRAF\SQLEXPRESS;Initial Catalog=QLShopQuanAo;Integrated Security=True";
         SqlConnection conn;
         SqlDataAdapter adapter;
         DataTable dt;

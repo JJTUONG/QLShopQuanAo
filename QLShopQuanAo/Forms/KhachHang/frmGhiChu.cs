@@ -3,12 +3,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace QLShopQuanAo.Forms
+namespace QLShopQuanAo.Forms.KhachHang
+
 {
     public partial class frmGhiChu : Form
     {
         string maKH_DangChon;
-        string strConn = @"Data Source=HUYTRUONG\SQLEXPRESS;Initial Catalog=QLShopQuanAo;Integrated Security=True";
+        string strConn = @"Data Source=DESKTOP-17KIRAF\SQLEXPRESS;Initial Catalog=QLShopQuanAo;Integrated Security=True";
         SqlConnection conn;
 
         // Constructor nhận Mã và Tên từ Form Chính
@@ -44,6 +45,16 @@ namespace QLShopQuanAo.Forms
             MessageBox.Show("Đã lưu ghi chú!");
             txtNoiDung.Clear();
             LoadGhiChu();
+        }
+
+        private void frmGhiChu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvGhiChu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
