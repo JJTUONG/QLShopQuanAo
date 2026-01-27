@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QLShopQuanAo.Forms.FrmSanPham;
+using QLShopQuanAo.Forms.FromSanPhams;
 
 
 namespace QLShopQuanAo.Forms
@@ -61,32 +61,17 @@ namespace QLShopQuanAo.Forms
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            FrmKhachHang f = new FrmKhachHang();
-            f.ShowDialog();
+            
         }
 
         private void btnTaiKhoan_Click(object sender, EventArgs e)
         {
-            if (_vaiTro != "QuanLy")
-            {
-                MessageBox.Show("Bạn không có quyền truy cập!");
-                return;
-            }
-
-            FrmTaiKhoang f = new FrmTaiKhoang();
-            f.ShowDialog();
+            
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            if (_vaiTro != "QuanLy")
-            {
-                MessageBox.Show("Bạn không có quyền truy cập!");
-                return;
-            }
-
-            FrmThongKe f = new FrmThongKe();
-            f.ShowDialog();
+            
         }
     }
 }

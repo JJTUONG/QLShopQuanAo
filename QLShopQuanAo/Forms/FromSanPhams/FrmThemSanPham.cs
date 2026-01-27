@@ -16,5 +16,10 @@ namespace QLShopQuanAo.Forms.FromSanPhams
         {
             InitializeComponent();
         }
+
+        private void FrmThemSanPham_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
