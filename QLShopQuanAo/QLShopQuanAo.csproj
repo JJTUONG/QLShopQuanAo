@@ -57,6 +57,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Forms\FrmBangHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBangHang.Designer.cs">
+      <DependentUpon>FrmBangHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGhiChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGhiChu.Designer.cs">
+      <DependentUpon>frmGhiChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmHoaDon.Designer.cs">
+      <DependentUpon>FrmHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmKhachHang.Designer.cs">
+      <DependentUpon>FrmKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLoaiKhach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoaiKhach.Designer.cs">
+      <DependentUpon>frmLoaiKhach.cs</DependentUpon>
+    </Compile>
+>>>>>>> feature/form-khach-hang-3-form
     <Compile Include="Forms\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
