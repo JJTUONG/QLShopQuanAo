@@ -57,12 +57,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbQLShopQuanAoDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmKhachHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmKhachHang.Designer.cs">
-      <DependentUpon>FrmKhachHang.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,41 +69,35 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmSanPham.cs">
+    <Compile Include="Forms\SanPham\FrmSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmSanPham.Designer.cs">
+    <Compile Include="Forms\SanPham\FrmSanPham.Designer.cs">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmTaiKhoang.cs">
+    <Compile Include="Forms\SanPham\FrmThemSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmTaiKhoang.Designer.cs">
-      <DependentUpon>FrmTaiKhoang.cs</DependentUpon>
+    <Compile Include="Forms\SanPham\FrmThemSanPham.Designer.cs">
+      <DependentUpon>FrmThemSanPham.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmLichSuTaiKhoan.cs">
+    <Compile Include="Forms\TaiKhoang\FrmChiTietBanHangTheoTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmLichSuTaiKhoan.Designer.cs">
-      <DependentUpon>FrmLichSuTaiKhoan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FrmChiTietBanHangTheoTaiKhoan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmChiTietBanHangTheoTaiKhoan.Designer.cs">
+    <Compile Include="Forms\TaiKhoang\FrmChiTietBanHangTheoTaiKhoan.Designer.cs">
       <DependentUpon>FrmChiTietBanHangTheoTaiKhoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmThongKe.cs">
+    <Compile Include="Forms\TaiKhoang\FrmLichSuTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmThongKe.Designer.cs">
-      <DependentUpon>FrmThongKe.cs</DependentUpon>
+    <Compile Include="Forms\TaiKhoang\FrmLichSuTaiKhoan.Designer.cs">
+      <DependentUpon>FrmLichSuTaiKhoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.cs">
+    <Compile Include="Forms\TaiKhoang\FrmTaiKhoang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FromSanPhams\FrmThemSanPham.Designer.cs">
-      <DependentUpon>FrmThemSanPham.cs</DependentUpon>
+    <Compile Include="Forms\TaiKhoang\FrmTaiKhoang.Designer.cs">
+      <DependentUpon>FrmTaiKhoang.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CTHoaDon.cs" />
     <Compile Include="Models\HoaDon.cs" />
@@ -124,14 +112,14 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FromSanPhams\FrmSanPham.resx">
+    <EmbeddedResource Include="Forms\SanPham\FrmSanPham.resx">
       <DependentUpon>FrmSanPham.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmLichSuTaiKhoan.resx">
-      <DependentUpon>FrmLichSuTaiKhoan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmChiTietBanHangTheoTaiKhoan.resx">
+    <EmbeddedResource Include="Forms\TaiKhoang\FrmChiTietBanHangTheoTaiKhoan.resx">
       <DependentUpon>FrmChiTietBanHangTheoTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TaiKhoang\FrmLichSuTaiKhoan.resx">
+      <DependentUpon>FrmLichSuTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

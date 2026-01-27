@@ -40,7 +40,7 @@
             // 
             // btnTaiKhoan
             // 
-            this.btnTaiKhoan.Location = new System.Drawing.Point(12, 321);
+            this.btnTaiKhoan.Location = new System.Drawing.Point(12, 115);
             this.btnTaiKhoan.Name = "btnTaiKhoan";
             this.btnTaiKhoan.Size = new System.Drawing.Size(176, 43);
             this.btnTaiKhoan.TabIndex = 1;
@@ -61,7 +61,7 @@
             // btnSanPham
             // 
             this.btnSanPham.BackColor = System.Drawing.Color.White;
-            this.btnSanPham.Location = new System.Drawing.Point(12, 59);
+            this.btnSanPham.Location = new System.Drawing.Point(12, 34);
             this.btnSanPham.Name = "btnSanPham";
             this.btnSanPham.Size = new System.Drawing.Size(176, 43);
             this.btnSanPham.TabIndex = 11;
@@ -107,7 +107,7 @@
             // 
             // bntBanHang
             // 
-            this.bntBanHang.Location = new System.Drawing.Point(12, 131);
+            this.bntBanHang.Location = new System.Drawing.Point(12, 320);
             this.bntBanHang.Name = "bntBanHang";
             this.bntBanHang.Size = new System.Drawing.Size(176, 43);
             this.bntBanHang.TabIndex = 16;
