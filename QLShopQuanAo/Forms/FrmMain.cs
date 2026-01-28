@@ -7,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+<<<<<<< HEAD
 using QLShopQuanAo.Forms.SanPham;
 using QLShopQuanAo.Forms.TaiKhoang;
 using QLShopQuanAo.Forms.KhachHang;
 
+=======
+>>>>>>> origin/LamChiDinh
 
 
 namespace QLShopQuanAo.Forms
