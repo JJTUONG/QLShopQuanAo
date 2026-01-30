@@ -18,6 +18,7 @@ namespace QLShopQuanAo.Forms
         private Button btnThem, btnThanhToan, btnHuy;
         private DataGridView dgvChiTiet;
         private Panel pnlTongTien;
+        private Button btnXoa;
 
         // Biến toàn cục lưu tổng tiền tạm tính
         private decimal tongTienCaDon = 0;
@@ -73,13 +74,28 @@ namespace QLShopQuanAo.Forms
 
             // 4. Tổng tiền & Chốt đơn
             pnlTongTien = new Panel() { Location = new Point(380, 520), Size = new Size(680, 120), BorderStyle = BorderStyle.FixedSingle };
+
             Label lblTieuDeTong = new Label() { Text = "TỔNG THANH TOÁN:", Location = new Point(20, 20), AutoSize = true, Font = new Font("Arial", 12, FontStyle.Bold) };
             lblTongTienHienThi = new Label() { Name = "lblTongTien", Text = "0 VNĐ", Location = new Point(20, 50), AutoSize = true, Font = new Font("Arial", 18, FontStyle.Bold), ForeColor = Color.Red };
-            btnThanhToan = new Button() { Name = "btnThanhToan", Text = "THANH TOÁN & LƯU", Location = new Point(450, 20), Size = new Size(200, 80), BackColor = Color.Orange, Font = new Font("Arial", 11, FontStyle.Bold) };
-            btnHuy = new Button() { Text = "Hủy", Location = new Point(350, 20), Size = new Size(80, 80) };
 
-            pnlTongTien.Controls.Add(lblTieuDeTong); pnlTongTien.Controls.Add(lblTongTienHienThi);
-            pnlTongTien.Controls.Add(btnThanhToan); pnlTongTien.Controls.Add(btnHuy);
+            // --- [MỚI] Nút Xóa (Màu hồng) - Đặt ở vị trí 260 ---
+            btnXoa = new Button() { Text = "Xóa", Location = new Point(260, 20), Size = new Size(90, 80), BackColor = Color.LightPink, Font = new Font("Arial", 10, FontStyle.Bold) };
+            btnXoa.Click += BtnXoa_Click; // Gắn sự kiện luôn tại đây
+
+            // Nút Hủy (Màu xám) - Dời sang 360
+            btnHuy = new Button() { Text = "Hủy", Location = new Point(360, 20), Size = new Size(80, 80), BackColor = Color.LightGray, Font = new Font("Arial", 10, FontStyle.Bold) };
+            btnHuy.Click += (s, e) => { dgvChiTiet.Rows.Clear(); tongTienCaDon = 0; lblTongTienHienThi.Text = "0 VNĐ"; };
+
+            // Nút Thanh Toán (Màu cam) - Dời sang 450
+            btnThanhToan = new Button() { Name = "btnThanhToan", Text = "THANH TOÁN & LƯU", Location = new Point(450, 20), Size = new Size(200, 80), BackColor = Color.Orange, Font = new Font("Arial", 11, FontStyle.Bold) };
+            btnThanhToan.Click += BtnThanhToan_Click;
+
+            // Thêm các nút vào Panel
+            pnlTongTien.Controls.Add(lblTieuDeTong);
+            pnlTongTien.Controls.Add(lblTongTienHienThi);
+            pnlTongTien.Controls.Add(btnXoa);      // <--- Nhớ thêm btnXoa vào đây
+            pnlTongTien.Controls.Add(btnHuy);
+            pnlTongTien.Controls.Add(btnThanhToan);
 
             this.Controls.Add(grpThongTin); this.Controls.Add(grpSanPham);
             this.Controls.Add(grpGioHang); this.Controls.Add(pnlTongTien);
@@ -245,6 +261,32 @@ namespace QLShopQuanAo.Forms
                 {
                     MessageBox.Show("Lỗi khi thanh toán: " + ex.Message);
                 }
+            }
+        }
+        private void BtnXoa_Click(object sender, EventArgs e)
+        {
+            // 1. Kiểm tra xem người dùng có chọn dòng nào không
+            if (dgvChiTiet.SelectedRows.Count > 0)
+            {
+                // 2. Hỏi xác nhận cho chắc ăn
+                if (MessageBox.Show("Bạn chắc chắn muốn xóa món này khỏi giỏ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    // 3. Duyệt qua các dòng đang chọn để xóa
+                    foreach (DataGridViewRow row in dgvChiTiet.SelectedRows)
+                    {
+                        if (!row.IsNewRow) // Chỉ xóa dòng dữ liệu thật
+                        {
+                            dgvChiTiet.Rows.Remove(row);
+                        }
+                    }
+
+                    // 4. Quan trọng: Tính lại tổng tiền sau khi xóa
+                    TinhTongTien();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng click chọn vào món cần xóa trên bảng!", "Chưa chọn món");
             }
         }
     }
